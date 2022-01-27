@@ -1,8 +1,14 @@
+function Title(){
+    return(
+        <h1>Boas vinda de volta!</h1>
+    );
+}
+
 function HomePage(){
 
     return (
     <div>
-        <h1>Boas vinda de volta!</h1>
+        <Title>Boas vinda de volta!</Title>
         <h2>Discord - Alura Matrix</h2>
         
         <style jsx>{`
