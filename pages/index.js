@@ -1,6 +1,7 @@
-function Title(){
+function Title(props){
+    console.log(props.children);
     return(
-        <h1>Boas vinda de volta!</h1>
+        <h1>{props.children}</h1>
     );
 }
 
