@@ -1,3 +1,5 @@
+import appConfig from '../config.json';
+
 function GlobalStyle(){
     return(
         <style global jsx>{`
@@ -35,7 +37,7 @@ function Title(props){
         <h1>{props.children}</h1>
         <style jsx>{`
         ${Tag}{
-            color: red;
+            color: ${appConfig.theme.colors.neutrals['000']};
             font-size:24px;
             font-weight:600;
             
