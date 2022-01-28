@@ -1,5 +1,6 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import appConfig from '../config.json';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 function GlobalStyle(){
@@ -66,6 +67,7 @@ function Titulo(props) {
 export default function PaginaInicial() {
     // const username = 'RenanRodriguesRecife';
     const [username, setUsername] = React.useState('RenanRodriguesRecife');
+    const roteamento = useRouter();
 
     return (
       <>
@@ -99,7 +101,8 @@ export default function PaginaInicial() {
               onSubmit={function (infosDoEvento){
                 infosDoEvento.preventDefault();
                 console.log('Alguém submeteu o form');
-                window.location.href = '/chat';
+                // window.location.href = '/chat';
+                roteamento.push('/chat');
               }}
               styleSheet={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
