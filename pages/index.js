@@ -92,8 +92,12 @@ export default function PaginaInicial() {
                 value={username}
                 onChange={function(event){
                 console.log("usuário digitou")
+                
                 const valor = event.target.value;
+                
                 setUsername(valor);
+                
+                  
                 }}
                 textFieldColors={{
                   neutral: {
