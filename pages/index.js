@@ -1,5 +1,6 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components'
 import appConfig from '../config.json';
+import React from 'react';
 
 function GlobalStyle(){
     return(
@@ -63,8 +64,9 @@ function Titulo(props) {
 
 
 export default function PaginaInicial() {
-    const username = 'RenanRodriguesRecife';
-  
+    // const username = 'RenanRodriguesRecife';
+    const [username, setUsername] = React.useState('RenanRodriguesRecife');
+
     return (
       <>
         <GlobalStyle />
@@ -94,6 +96,7 @@ export default function PaginaInicial() {
             {/* Formulário */}
             <Box
               as="form"
+              
               styleSheet={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                 width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
@@ -104,8 +107,16 @@ export default function PaginaInicial() {
                 {appConfig.name}
               </Text>
   
-              <TextField
+
+             
+               <TextField
                 fullWidth
+                value={username}
+                onChange={function(event){
+                console.log("usuário digitou")
+                const valor = event.target.value;
+                setUsername(valor);
+                }}
                 textFieldColors={{
                   neutral: {
                     textColor: appConfig.theme.colors.neutrals[200],
@@ -114,7 +125,7 @@ export default function PaginaInicial() {
                     backgroundColor: appConfig.theme.colors.neutrals[800],
                   },
                 }}
-              />
+              /> 
               <Button
                 type='submit'
                 label='Entrar'
