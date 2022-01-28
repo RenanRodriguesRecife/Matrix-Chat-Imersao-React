@@ -99,6 +99,7 @@ export default function PaginaInicial() {
               onSubmit={function (infosDoEvento){
                 infosDoEvento.preventDefault();
                 console.log('Alguém submeteu o form');
+                window.location.href = '/chat';
               }}
               styleSheet={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
