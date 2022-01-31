@@ -47,9 +47,14 @@ export default function ChatPage() {
                 >
 
                     {/* <MessageList mensagens={[]} /> */}
-                    Lista de mensagens: {listaDeMensagens.forEach((mensagemAtual)=>{
+                    Lista de mensagens: {listaDeMensagens.map((mensagemAtual)=>{
                         console.log(mensagemAtual)
-                        
+                        return (
+                            <li>
+                                {/* toda a variável escrita no react ele vai fazer um : var.toString() para imprimir no navegador. */}
+                                {mensagemAtual}
+                            </li>
+                        )
                     })}
                     <Box
                         as="form"
@@ -66,6 +71,8 @@ export default function ChatPage() {
                             }}
                             onKeyPress={(event)=>{
                                 if(event.key === 'Enter'){
+                                    //evitar o comportamento de quebra de linha padrão
+                                    event.preventDefault();
                                     console.log(event);
                                     setListaDeMensagens([
                                         ...listaDeMensagens,
