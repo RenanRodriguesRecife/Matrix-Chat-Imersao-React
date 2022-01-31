@@ -10,9 +10,16 @@ export default function ChatPage() {
     // ./Sua lógica vai aqui
 
     function handleNovaMensagem(novaMensagem){
+
+        const mensagem = {
+            id: listaDeMensagens.length + 1,
+            de: 'Renan',
+            texto: novaMensagem,
+        };
+
         setListaDeMensagens([
             ...listaDeMensagens,
-            novaMensagem
+            mensagem
         ])
         setMessagem('');
     }
@@ -60,9 +67,9 @@ export default function ChatPage() {
                     Lista de mensagens: {listaDeMensagens.map((mensagemAtual)=>{
                         console.log(mensagemAtual)
                         return (
-                            <li>
+                            <li key={mensagemAtual.id}>
                                 {/* toda a variável escrita no react ele vai fazer um : var.toString() para imprimir no navegador. */}
-                                {mensagemAtual}
+                                {mensagemAtual.de}: {mensagemAtual.texto}
                             </li>
                         )
                     })}
