@@ -47,7 +47,10 @@ export default function ChatPage() {
                 >
 
                     {/* <MessageList mensagens={[]} /> */}
-                    Lista de mensagens: {listaDeMensagens}
+                    Lista de mensagens: {listaDeMensagens.forEach((mensagemAtual)=>{
+                        console.log(mensagemAtual)
+                        
+                    })}
                     <Box
                         as="form"
                         styleSheet={{
