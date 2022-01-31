@@ -8,6 +8,16 @@ export default function ChatPage() {
     const [mensagem, setMessagem] = React.useState('');
     const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
     // ./Sua lógica vai aqui
+
+    function handleNovaMensagem(novaMensagem){
+        setListaDeMensagens([
+            ...listaDeMensagens,
+            novaMensagem
+        ])
+        setMessagem('');
+    }
+
+
     return (
         <Box
             styleSheet={{
@@ -74,11 +84,7 @@ export default function ChatPage() {
                                     //evitar o comportamento de quebra de linha padrão
                                     event.preventDefault();
                                     console.log(event);
-                                    setListaDeMensagens([
-                                        ...listaDeMensagens,
-                                        mensagem
-                                    ])
-                                    setMessagem('');
+                                    handleNovaMensagem(mensagem);
                                 }
                                 // console.log(event);
                             }}
