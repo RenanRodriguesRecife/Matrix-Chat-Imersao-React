@@ -8,19 +8,24 @@ const SUPABASE_URL = 'https://yinzkodxpguhvcaquvsm.supabase.co'
 
 const supabaseClient = createClient(SUPABASE_URL,SUPABASE_ANON_KEY)
 
-const dadosDoSupabase = supabaseClient
-    .from('mensagens').select('*').then((dados)=>{
-        console.log('Dados da consoulta:',dados);
-    });
-
-console.log(dadosDoSupabase);
-
 export default function ChatPage() {
     // Sua lógica vai aqui
 
     const [mensagem, setMessagem] = React.useState('');
     const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
     // ./Sua lógica vai aqui
+
+
+    React.useEffect(()=>{
+            supabaseClient
+                .from('mensagens')
+                .select('*')
+                .then(({data})=>{
+            // console.log('Dados da consoulta:',dados);
+            setListaDeMensagens(data);
+        });
+    },[]);
+
 
     function handleNovaMensagem(novaMensagem) {
 
@@ -104,7 +109,7 @@ export default function ChatPage() {
                                 if (event.key === 'Enter') {
                                     //evitar o comportamento de quebra de linha padrão
                                     event.preventDefault();
-                                    console.log(event);
+                                    // console.log(event);
                                     handleNovaMensagem(mensagem);
                                 }
                                 // console.log(event);
@@ -148,7 +153,7 @@ function Header() {
 }
 
 function MessageList(props) {
-    console.log('MessageList', props);
+    // console.log('MessageList', props);
     return (
         <Box
             tag="ul"
@@ -189,7 +194,7 @@ function MessageList(props) {
                                     display: 'inline-block',
                                     marginRight: '8px',
                                 }}
-                                src={`https://github.com/vanessametonini.png`}
+                                src={`https://github.com/${mensagem.de}.png`}
                             />
                             <Text tag="strong">
                                 {mensagem.de}
