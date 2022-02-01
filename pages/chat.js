@@ -32,7 +32,7 @@ export default function ChatPage() {
 
         const mensagem = {
             // id: listaDeMensagens.length + 1,
-            de: 'Renan',
+            de: 'RenanRodriguesRecife',
             texto: novaMensagem,
         };
 
