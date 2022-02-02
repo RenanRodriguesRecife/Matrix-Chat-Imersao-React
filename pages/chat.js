@@ -17,12 +17,12 @@ export default function ChatPage() {
     console.log('usuarioLogado',usuarioLogado);
     const [mensagem, setMessagem] = React.useState('');
     const [listaDeMensagens, setListaDeMensagens] = React.useState([
-        {
-            //para teste
-            id: 1,
-            de: 'teste',
-            texto: ':sticker  https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_1.png',
-        }
+        // 
+            // //para teste
+            // id: 1,
+            // de: 'teste',
+            // texto: ':sticker  https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_1.png',
+        // 
     ]);
     // ./Sua lógica vai aqui
 
@@ -148,7 +148,12 @@ export default function ChatPage() {
                                 color: appConfig.theme.colors.neutrals[200],
                             }}
                         />
-                        <ButtonSendSticker/>
+                        <ButtonSendSticker
+                            onStickerClick={(sticker)=>{
+                                console.log('Salva esse sticker no banco',sticker)
+                                handleNovaMensagem(':sticker: ' + sticker)
+                            }}
+                        />
                     </Box>
                 </Box>
             </Box>
