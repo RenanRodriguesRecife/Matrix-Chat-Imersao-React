@@ -7,15 +7,15 @@ import { ButtonSendSticker } from '../src/components/ButtonSendSticker';
 
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzY2MzYzMywiZXhwIjoxOTU5MjM5NjMzfQ.NfDDA3Vkoy7LowoEexPNduoXaw0l2wMXiv66BELun6w'
 const SUPABASE_URL = 'https://yinzkodxpguhvcaquvsm.supabase.co'
-
 const supabaseClient = createClient(SUPABASE_URL,SUPABASE_ANON_KEY)
 
 
-function escutaMensagemEmTempoReal(){
+function escutaMensagemEmTempoReal(adicionaMensagem){
     return supabaseClient
     .from('mensagens')
-    .on('INSERT',()=>{
-        console.log('Houve uma nova mensagem');
+    .on('INSERT',(oQueVeio)=>{
+        console.log('Houve uma nova mensagem',oQueVeio);
+        adicionaMensagem(oQueVeio.new);
     })
     .subscribe();
 }
@@ -25,7 +25,7 @@ export default function ChatPage() {
     // Sua lógica vai aqui
     const roteamento = useRouter();
     const usuarioLogado = roteamento.query.username;
-    console.log('usuarioLogado',usuarioLogado);
+    // console.log('usuarioLogado',usuarioLogado);
     const [mensagem, setMessagem] = React.useState('');
     const [listaDeMensagens, setListaDeMensagens] = React.useState([
         // 
@@ -48,7 +48,14 @@ export default function ChatPage() {
             setListaDeMensagens(data);
         });
 
-        escutaMensagemEmTempoReal();
+        escutaMensagemEmTempoReal((novaMensagem)=>{
+            setListaDeMensagens((valorAtualDaLista)=>{
+                return [
+                novaMensagem,
+                ...valorAtualDaLista,
+            ]
+        });
+        });
     },[]);
 
 
@@ -67,10 +74,7 @@ export default function ChatPage() {
             ])
             .then(({data})=>{
                 console.log('Criando mensagem:', data);
-                setListaDeMensagens([
-                    data[0],
-                    ...listaDeMensagens,
-                ])
+                
             })
 
         setMessagem('');
@@ -251,7 +255,8 @@ function MessageList(props) {
                             </Text>
                         </Box>
                         {/* operador ternário */}
-                        Condicional: {mensagem.texto.startsWith(':sticker:').toString()}
+                        {/* Condicional:  */}
+                        {/* {mensagem.texto.startsWith(':sticker:').toString()} */}
                         {mensagem.texto.startsWith(':sticker:') 
                         ? (
                             <Image src={mensagem.texto.replace(':sticker:','')}/>
