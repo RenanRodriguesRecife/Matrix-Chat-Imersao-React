@@ -10,6 +10,17 @@ const SUPABASE_URL = 'https://yinzkodxpguhvcaquvsm.supabase.co'
 
 const supabaseClient = createClient(SUPABASE_URL,SUPABASE_ANON_KEY)
 
+
+function escutaMensagemEmTempoReal(){
+    return supabaseClient
+    .from('mensagens')
+    .on('INSERT',()=>{
+        console.log('Houve uma nova mensagem');
+    })
+    .subscribe();
+}
+
+
 export default function ChatPage() {
     // Sua lógica vai aqui
     const roteamento = useRouter();
@@ -36,6 +47,8 @@ export default function ChatPage() {
             // console.log('Dados da consoulta:',dados);
             setListaDeMensagens(data);
         });
+
+        escutaMensagemEmTempoReal();
     },[]);
 
 
