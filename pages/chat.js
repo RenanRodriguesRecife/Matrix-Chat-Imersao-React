@@ -232,15 +232,15 @@ function MessageList(props) {
                                 {(new Date().toLocaleDateString())}
                             </Text>
                         </Box>
+                        {/* operador ternário */}
                         Condicional: {mensagem.texto.startsWith(':sticker:').toString()}
                         {mensagem.texto.startsWith(':sticker:') 
                         ? (
-                            'É sticker'
+                            <Image src={mensagem.texto.replace(':sticker:','')}/>
                         )
                         : (
                             mensagem.texto
-                        )
-                        }
+                        )}
                      
                     </Text>
                 );
