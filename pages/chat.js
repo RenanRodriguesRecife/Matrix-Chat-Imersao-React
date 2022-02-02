@@ -16,7 +16,14 @@ export default function ChatPage() {
     const usuarioLogado = roteamento.query.username;
     console.log('usuarioLogado',usuarioLogado);
     const [mensagem, setMessagem] = React.useState('');
-    const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
+    const [listaDeMensagens, setListaDeMensagens] = React.useState([
+        {
+            //para teste
+            id: 1,
+            de: 'teste',
+            texto: ':sticker  https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_1.png',
+        }
+    ]);
     // ./Sua lógica vai aqui
 
 
@@ -225,7 +232,16 @@ function MessageList(props) {
                                 {(new Date().toLocaleDateString())}
                             </Text>
                         </Box>
-                        {mensagem.texto}
+                        Condicional: {mensagem.texto.startsWith(':sticker:').toString()}
+                        {mensagem.texto.startsWith(':sticker:') 
+                        ? (
+                            'É sticker'
+                        )
+                        : (
+                            mensagem.texto
+                        )
+                        }
+                     
                     </Text>
                 );
             })}
